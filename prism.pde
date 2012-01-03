@@ -2,8 +2,8 @@ import java.awt.event.*;
 
 float xtrans=0;
 float ytrans=0;
-float xscale=1;
-float yscale=1;
+float xscale=20;
+float yscale=20;
 
 ArrayList paths = new ArrayList();
 Path path = null;
@@ -47,7 +47,7 @@ void setup() {
   person = new Person(0,0);
 }
 
-void draw() {
+void draw() {  
   translate(width/2,height/2);
   scale(xscale, yscale);
   pushMatrix();
@@ -65,33 +65,36 @@ void draw() {
     ((Path)paths.get(i)).draw();
   }
   
-  line(-10,0,10,0);
-  line(0,-10,0,10);
-  
   person.draw();
   
   popMatrix();
 
 }
 
-void mousePressed() {
-  if( mouseButton==37 ) {
-    path = new Path();
-    path.add( screenX(), screenY() );
-  }
-}
+//void mousePressed() {
+  //if( mouseButton==37 ) {
+  //  path = new Path();
+  //  path.add( screenX(), screenY() );
+  //}
+//}
 
 void mouseReleased() {
-  if( mouseButton==37 ){
-    paths.add( path );
-    path=null;
-  }
+  //if( mouseButton==37 ){
+  //  paths.add( path );
+  //  path=null;
+  //}
+}
+
+void mousePressed() {
+  person.attemptSelect( screenX(), screenY() );
+  //println( person.inside( screenX(), screenY() ) );
 }
   
 void mouseDragged() {
-  if( mouseButton==37 ) {
-    path.add( screenX(), screenY() );
-  } else if( mouseButton==39 ) {
+  //if( mouseButton==37 ) {
+  //  path.add( screenX(), screenY() );
+  //}
+  if( mouseButton==39 ) {
     xtrans += (mouseX-pmouseX)/xscale;
     ytrans += (mouseY-pmouseY)/yscale;
   }
